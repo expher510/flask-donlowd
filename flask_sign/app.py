@@ -23,20 +23,21 @@ def sign():
     dataname=db.execute(f'SELECT * FROM users where name="{name}"')
     c=dataname.fetchone()
     if not name:
-        massge='write password mother facker'
-        return render_template('/main.html',massge=massge)
-    if  c !=None :
-        massge=f'name alrade exist '
-        return render_template('/main.html',massge=massge)
+        massge = 'write name pless'
+        return render_template('/main.html', massge=massge)
+    if c != None:
+        massge = f'name already exist'
+        return render_template('/main.html', massge=massge)
     if not password:
-        massge='write password mother facker'
-        return render_template('/main.html',massge=massge)
-    response = requests.get(f"https://emailvalidation.abstractapi.com/v1/?api_key=4d6dd9fcdfa84e68bbe9cce77ad59520&email={email}")
-    x=response.content
-    q=json.loads(x)
-    format=q['is_valid_format']['value']
+        massge = 'write password pless'
+        return render_template('/main.html', massge=massge)
+    response = requests.get(
+        f"https://emailvalidation.abstractapi.com/v1/?api_key=4d6dd9fcdfa84e68bbe9cce77ad59520&email={email}")
+    x = response.content
+    q = json.loads(x)
+    format = q['is_valid_format']['value']
     if format == False:
-        massge='un valid emali'
+        massge = 'invalid email'
         return render_template('/main.html',massge=massge)
     else:
         db.execute('CREATE TABLE IF NOT EXISTS users(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,name,password,email)')
