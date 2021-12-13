@@ -43,7 +43,7 @@ def sign():
         db.execute('CREATE TABLE IF NOT EXISTS users(ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,name,password,email)')
         db.execute(f'INSERT INTO users(name,password,email) VALUES("{name}","{password}","{email}")')
         conect.commit()
-        return render_template('/main.html')
+        return render_template('/main.html', massge=f'you are sign in {name}')
 @app.route('/main', methods=['post','get'])
 def main():
     name=request.form.get('name')
@@ -51,9 +51,9 @@ def main():
     dataname=db.execute(f'SELECT * FROM users where name="{name.strip()}" and password="{password}"')
     c=dataname.fetchone()
     if not c:
-        massge='sign up'
+        massge = 'sign up '
     else:
-        massge='u are in'
-    return render_template('/main.html',name=massge)
+        massge = f'welcome pack {name}, you are sign in'
+    return render_template('/main.html', massge=massge)
 if __name__=="__main":
     app.run(debug=True)
