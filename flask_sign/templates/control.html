@@ -1,0 +1,27 @@
+{%extends 'layout.html'%}
+
+{%block body%}
+
+{%if massge%}
+    {{massge}}
+{%endif%}
+
+<form action="/control" method="post">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Book name</label>
+        <input type="text" name="name" class="form-control" id="exampleFormControlInput1" >
+      </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">quat</label>
+          <input type="text" name="quat" class="form-control" id="exampleFormControlInput1" >
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Summary</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="summary"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
+{%endblock%}

@@ -148,3 +148,8 @@ a{color:inherit;text-decoration:none}
 .foot-lnk{
 	text-align:center;
 }
+label,
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
