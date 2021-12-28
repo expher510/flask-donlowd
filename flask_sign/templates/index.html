@@ -7,11 +7,20 @@ $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   })
 </script>
-<div class="row row-cols-1 row-cols-md-4 g-4 ">   
- {% for i in c%}
+{% if massge%}
+<div class="alert alert-primary mx-auto" role="alert">
+
+  <h1>can't find "{{massge}}"</h1>
+</div>
+</div>
+{%else%}
+<div class="container-fluid">
+  <div class="row row-cols-1 row-cols-md-4 g-3 ">
+
+    {% for i in c%}
  <div class="card text-center">
     <div class="card-header">
-      Featured
+      by <a href="/?linke={{i[5]}}">{{i[5]}}</a>
     </div>
     <div class="card-body">
       <h5 class="card-title">{{i[2]}}</h5>
@@ -28,23 +37,28 @@ $('#myModal').on('shown.bs.modal', function () {
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">{{i[2]}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body{{i[0]}}">
-          <p class="text-capitalize text-left font-italic">{{i[4]}}</p>
+          <summary>{{i[4] |safe}}</summary>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          <button type="button" class="btn btn-secondary"> <a href="{{i[6]}}" style="color:white; text-decoration: inherit;">get
+              the
+              book</a>
+          </button>
         </div>
       </div>
     </div>
   </div>
 {%endfor%}
+{%endif%}
 
+</div>
 </div>         
 
 
